@@ -1,10 +1,45 @@
 {% extends 'base_public.html' %}
-{% block title %}404 - Page Not Found | SmartPark{% endblock %}
+
+{% block title %}SmartPark | 404 Page Not Found{% endblock %}
+
 {% block content %}
-<div class="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
-    <h1 class="text-9xl font-bold text-gray-200">404</h1>
-    <h2 class="text-3xl font-semibold mt-4">Page Not Found</h2>
-    <p class="text-gray-600 mt-2">The page you are looking for does not exist.</p>
-    <a href="/" class="mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Go Home</a>
-</div>
+<section class="min-h-[85vh] flex flex-col justify-center items-center bg-gray-50 border-b border-gray-200 py-24">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+        <!-- Eyebrow -->
+        <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">404 / Page Not Found</span>
+        
+        <!-- Heading -->
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-6 leading-tight">
+            We couldn't find that page.
+        </h1>
+        
+        <!-- Supporting text -->
+        <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-xl mx-auto leading-relaxed">
+            The page you're looking for may have moved, been removed, or the address may be incorrect. Let's get you back to finding parking.
+        </p>
+
+        <!-- Purposeful Visual -->
+        <div class="flex justify-center items-center gap-4 mb-16 opacity-70">
+            <div class="w-16 h-24 border-2 border-gray-300 rounded-lg flex items-center justify-center">
+                <div class="w-2 h-16 bg-gray-200 rounded-full"></div>
+            </div>
+            <div class="w-16 h-24 border-2 border-dashed border-red-300 rounded-lg bg-red-50 flex items-center justify-center">
+                <span class="text-red-400 font-bold text-xl">404</span>
+            </div>
+            <div class="w-16 h-24 border-2 border-gray-300 rounded-lg flex items-center justify-center">
+                <div class="w-2 h-16 bg-gray-200 rounded-full"></div>
+            </div>
+        </div>
+        
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="/" class="inline-flex justify-center items-center px-10 py-4 bg-gray-900 text-white rounded-full font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto shadow-xl hover:shadow-2xl">
+                Back to Home
+            </a>
+            <a href="/services" class="inline-flex justify-center items-center px-10 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-medium text-lg hover:bg-gray-50 transition-colors w-full sm:w-auto shadow-sm">
+                Explore Services
+            </a>
+        </div>
+    </div>
+</section>
 {% endblock %}

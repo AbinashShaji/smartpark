@@ -4,7 +4,8 @@ bp = Blueprint('public', __name__)
 
 @bp.route('/')
 def index():
-    return render_template('public/index.html')
+    reviews = [] # Fetch from DB later
+    return render_template('public/index.html', reviews=reviews)
 
 @bp.route('/about')
 def about():
@@ -20,7 +21,10 @@ def services():
 
 @bp.route('/reviews')
 def reviews():
-    return render_template('public/reviews.html')
+    # Fetch reviews from the database once the model is implemented.
+    # Currently, there are no reviews in the system.
+    reviews = []
+    return render_template('public/reviews.html', reviews=reviews)
 
 @bp.route('/privacy')
 def privacy():

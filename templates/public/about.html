@@ -1,1 +1,501 @@
-<!-- about.html -->
+{% extends 'base_public.html' %}
+
+{% block title %}About SmartPark{% endblock %}
+
+{% block content %}
+<!-- 1. HERO — WHY SMARTPARK EXISTS -->
+<section class="relative min-h-[70vh] flex flex-col justify-center items-center bg-white pt-24 pb-16">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">About SmartPark</span>
+        <h1 class="text-[4rem] md:text-[5.5rem] lg:text-[6.5rem] font-bold tracking-tighter leading-[0.95] mb-8">
+            <span class="block text-gray-900">Helping you find</span>
+            <span class="block text-gray-300 mt-2">a place to park.</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            SmartPark is designed to help you find available parking, choose a suitable slot, reserve it, and access it without the usual stress.
+        </p>
+    </div>
+</section>
+
+<!-- 2. THE PROBLEM — WHY PARKING NEEDS TO CHANGE -->
+<section class="py-24 md:py-32 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl mb-24">
+            <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">The Problem</span>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight mb-8">
+                Parking should not be a matter of chance.
+            </h2>
+            <p class="text-xl text-gray-600 leading-relaxed">
+                Traditional parking systems are fundamentally reactive. Drivers arrive without guarantees, wasting valuable time and contributing to urban congestion. The entire analog process is fragmented and disconnected.
+            </p>
+        </div>
+
+        <div class="flex flex-col">
+            <!-- Item 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">01</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Uncertain Availability</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Drivers often arrive at a location without knowing whether a suitable parking slot is actually available, turning the end of a journey into a frustrating gamble.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 2 (Active/Highlighted) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-12 border-t border-gray-200 bg-gray-900 rounded-3xl px-8 md:px-12 -mx-8 md:-mx-12 my-2 shadow-xl">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-700">02</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-white mt-2 md:mt-4">Time Lost Searching</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-400 leading-relaxed mt-2 md:mt-4">
+                        Physically searching and circling for an open space wastes massive amounts of time and fuel, generating unnecessary stress before you even reach your final destination.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200 mt-2">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">03</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Vehicle Compatibility</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Finding an empty spot is only half the battle. Drivers frequently encounter slots that are physically incompatible with their vehicle type, category, or size.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">04</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Reservation Uncertainty</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Traditional infrastructure offers no mechanism to secure a spot in advance, leaving drivers with no guarantee that parking will be available when they finally arrive.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">05</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Manual Access</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Physical paper tickets, cash transactions, and manual barrier operations introduce friction and delays at the most critical points of entry and exit.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-y border-gray-200">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">06</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Scattered Process</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Searching, paying, and accessing are treated as entirely disconnected events, forcing the driver to manage multiple fragmented interactions for a single journey.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. OUR MOTIVE — WHY SMARTPARK WAS BUILT -->
+<section class="py-32 bg-gray-900 text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">Our Motive</span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-12 leading-tight">
+            Making it easier to find parking.
+        </h2>
+        <div class="space-y-8 text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+            <p>
+                We built SmartPark because we believe your journey should end when you arrive, not when you finally find a place to leave your car.
+            </p>
+            <p>
+                Our core motive is simple: to help drivers find and secure a parking place easily. By letting you find an available slot and reserve it before you even start your engine, we aim to give you back your time and peace of mind.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 4. THE SMARTPARK CONCEPT -->
+<section class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <div class="lg:col-span-5">
+                <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">The Concept</span>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
+                    A centralized, digital-first model.
+                </h2>
+            </div>
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-8 text-xl text-gray-600 leading-relaxed">
+                <p>
+                    Unlike fragmented marketplaces or basic listing apps, SmartPark operates as a centralized platform connecting our own managed locations directly to drivers. 
+                </p>
+                <p>
+                    By bridging the gap between intelligent software and physical parking infrastructure, we ensure that every slot shown as available is genuinely reservable, and every reservation guarantees immediate access upon arrival.
+                </p>
+                <p>
+                    It is an end-to-end ecosystem where discovery, compatibility matching, reservation, payment, and physical access are managed securely through a single continuous workflow.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. HOW SMARTPARK WORKS -->
+<section class="py-32 bg-gray-50 border-y border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl mb-24">
+            <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">The Workflow</span>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight mb-8">
+                How you find and secure a slot.
+            </h2>
+            <p class="text-xl text-gray-600 leading-relaxed">
+                SmartPark gives you the tools you need to find a space that fits your vehicle, reserve it, and park peacefully without unnecessary searching.
+            </p>
+        </div>
+
+        <div class="flex flex-col">
+            <!-- Item 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">01</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Discover</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Search for parking locations using an integrated map and view current slot availability across all facilities in real-time.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">02</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Check Availability</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Input your specific vehicle type and category to instantly filter out incompatible slots and view only the spaces that physically fit your vehicle.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 3 (Active/Highlighted) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-12 border-t border-gray-200 bg-gray-900 rounded-3xl px-8 md:px-12 -mx-8 md:-mx-12 my-2 shadow-xl">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-700">03</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-white mt-2 md:mt-4">Reserve</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-400 leading-relaxed mt-2 md:mt-4">
+                        Select a suitable time frame and reserve the slot. The system immediately locks the slot status across the platform to absolutely prevent any double-booking conflicts.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200 mt-2">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">04</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Pay</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Complete your digital payment securely within the platform, finalizing your confirmed booking before you ever reach the physical location.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">05</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Access</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Receive a dynamic QR code or time-bound OTP to use at the physical entry gates for immediate, automated validation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-y border-gray-200">
+                <div class="md:col-span-2">
+                    <span class="text-[4rem] leading-none font-bold tracking-tighter text-gray-200">06</span>
+                </div>
+                <div class="md:col-span-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2 md:mt-4">Park & Exit</h3>
+                </div>
+                <div class="md:col-span-6">
+                    <p class="text-lg text-gray-600 leading-relaxed mt-2 md:mt-4">
+                        Park with total confidence. When you leave, simply use your credentials to exit, automatically releasing the slot back to the platform for the next driver.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. INTELLIGENCE BEHIND SMARTPARK -->
+<section class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div class="lg:col-span-5 sticky top-24">
+                <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Intelligence</span>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight mb-6">
+                    Driven by data and automation.
+                </h2>
+                <p class="text-xl text-gray-600 leading-relaxed">
+                    We leverage structured data to solve analog physical problems, ensuring the system remains accurate, responsive, and predictive.
+                </p>
+            </div>
+            <div class="lg:col-span-7 space-y-16 mt-8 lg:mt-0">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Availability Forecasting</h3>
+                    <p class="text-xl text-gray-600 leading-relaxed mb-4">
+                        SmartPark doesn't just show you what's available now; it predicts what will be available later. 
+                    </p>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        By applying Linear Regression machine learning models to historical occupancy data, the platform can forecast future trends. This allows drivers to proactively plan their trips around moderately busy or heavily congested periods.
+                    </p>
+                </div>
+                <hr class="border-gray-200">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Vehicle-Aware Matching</h3>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Not all parking slots are created equal. The system enforces strict slot compatibility checks before confirming any reservation. Whether you drive a compact hatchback or a heavy truck, the allocation engine filters out physically incompatible spaces, ensuring a frictionless arrival.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. FROM SEARCH TO ACCESS -->
+<section class="py-32 bg-gray-900 text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-24 max-w-3xl mx-auto">
+            <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">The Journey</span>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+                From intent to arrival.
+            </h2>
+        </div>
+
+        <div class="relative">
+            <!-- Connecting Line (Desktop only) -->
+            <div class="hidden lg:block absolute top-12 left-0 w-full h-[1px] bg-gray-800"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 lg:gap-8 relative z-10">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div class="w-24 h-24 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center mx-auto lg:mx-0 mb-8 shadow-xl">
+                        <span class="text-3xl font-bold tracking-tighter text-gray-400">01</span>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-xl font-bold text-white mb-4">Discover</h3>
+                        <p class="text-gray-400 text-lg leading-relaxed">Find suitable locations and view available capacity instantly.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div class="w-24 h-24 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center mx-auto lg:mx-0 mb-8 shadow-xl">
+                        <span class="text-3xl font-bold tracking-tighter text-gray-400">02</span>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-xl font-bold text-white mb-4">Reserve</h3>
+                        <p class="text-gray-400 text-lg leading-relaxed">Secure the slot specifically verified for your vehicle type.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 (Highlighted) -->
+                <div class="relative">
+                    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center mx-auto lg:mx-0 mb-8 shadow-[0_0_40px_rgba(255,255,255,0.15)]">
+                        <span class="text-3xl font-bold tracking-tighter text-gray-900">03</span>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-xl font-bold text-white mb-4">Pay</h3>
+                        <p class="text-gray-400 text-lg leading-relaxed">Finalize the booking digitally before ever reaching the location.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative">
+                    <div class="w-24 h-24 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center mx-auto lg:mx-0 mb-8 shadow-xl">
+                        <span class="text-3xl font-bold tracking-tighter text-gray-400">04</span>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-xl font-bold text-white mb-4">Access</h3>
+                        <p class="text-gray-400 text-lg leading-relaxed">Scan your QR code or enter your OTP at the gate.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="relative">
+                    <div class="w-24 h-24 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center mx-auto lg:mx-0 mb-8 shadow-xl text-white">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-xl font-bold text-white mb-4">Park</h3>
+                        <p class="text-gray-400 text-lg leading-relaxed">Arrive with absolute certainty that your space is waiting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 8. WHY THE EXPERIENCE IS DIFFERENT -->
+<section class="py-24 md:py-32 bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">The Difference</span>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
+                A fundamental shift in process.
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+            <div class="bg-gray-50 p-10 md:p-14 rounded-3xl border border-gray-200">
+                <h3 class="text-sm font-bold tracking-widest uppercase text-gray-400 mb-8">Traditional Parking</h3>
+                <ul class="space-y-8 text-xl text-gray-500 font-medium">
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-300">→</span> Drive to location
+                    </li>
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-300">→</span> Hope for availability
+                    </li>
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-300">→</span> Circle lot searching
+                    </li>
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-300">→</span> Find physical spot
+                    </li>
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-300">→</span> Manual ticket / cash payment
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-900 p-10 md:p-14 rounded-3xl border border-gray-800 shadow-xl">
+                <h3 class="text-sm font-bold tracking-widest uppercase text-white mb-8">SmartPark</h3>
+                <ul class="space-y-8 text-xl text-white font-medium">
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-500">→</span> Check availability & predict
+                    </li>
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-500">→</span> Reserve specific slot digitally
+                    </li>
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-500">→</span> Pay seamlessly in advance
+                    </li>
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-500">→</span> Arrive with absolute certainty
+                    </li>
+                    <li class="flex items-center gap-6">
+                        <span class="text-gray-500">→</span> Automated QR/OTP access
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 9. TECHNOLOGY + PHYSICAL INFRASTRUCTURE -->
+<section class="py-24 md:py-32 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <div class="lg:col-span-5">
+                <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Infrastructure</span>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
+                    Beyond just a booking interface.
+                </h2>
+            </div>
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-8 text-xl text-gray-600 leading-relaxed">
+                <p>
+                    SmartPark does not merely broker transactions for third-party garages. Our administrators centrally manage the parking locations, the slot states, and the access gates directly within the SmartPark ecosystem.
+                </p>
+                <p>
+                    This direct relationship between our digital platform and the physical infrastructure means the availability you see on your screen perfectly matches the physical reality on the ground. When you generate an OTP or QR code, the gate opens because the system recognizes your exact reservation state instantly.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 10. TRUST / TRANSPARENCY -->
+<section class="py-24 md:py-32 bg-white border-t border-gray-200">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Transparency</span>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight mb-12">
+            Built on reliability.
+        </h2>
+        <div class="space-y-8 text-xl text-gray-600 leading-relaxed">
+            <p>
+                Trust in a mobility platform comes from it doing exactly what it promises. We ensure that our slot allocation engine strictly prevents double bookings, locking in your space the moment your payment is confirmed.
+            </p>
+            <p>
+                Our booking policies are completely transparent: cancellations are permitted with clear refund guidelines, and active bookings can be seamlessly extended straight from your dashboard if you need more time. Security remains paramount, relying on cryptographically verified QR access and secure sessions to protect your digital credentials.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 11. FINAL STATEMENT / CTA -->
+<section class="py-32 bg-gray-900 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+        <h2 class="text-[3rem] md:text-[4.5rem] font-bold tracking-tighter text-white leading-tight mb-8">
+            Find your place to park today.
+        </h2>
+        <p class="text-xl text-gray-400 mb-12 max-w-xl mx-auto leading-relaxed">
+            Join the drivers who are using SmartPark to find, reserve, and access parking effortlessly.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/auth/signup" class="inline-flex justify-center items-center px-10 py-4 bg-white text-gray-900 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors">
+                Get Started
+            </a>
+            <a href="/services" class="inline-flex justify-center items-center px-10 py-4 bg-transparent text-white border border-gray-700 rounded-full font-bold text-lg hover:bg-gray-800 transition-colors">
+                Explore Services
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

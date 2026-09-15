@@ -1,21 +1,125 @@
 {% extends 'base.html' %}
 
 {% block layout %}
-<header class="bg-white shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <div class="text-2xl font-bold text-blue-600">SmartPark</div>
-        <nav class="space-x-4">
-            <a href="/" class="text-gray-600 hover:text-blue-600">Home</a>
-            <a href="/auth/login" class="text-gray-600 hover:text-blue-600">Login</a>
-        </nav>
-    </div>
-</header>
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-white border-b border-gray-200 bg-opacity-95 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Logo (Left) -->
+        <div class="flex-1 flex justify-start">
+            <a href="/" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-gray-900">SmartPark</span>
+            </a>
+        </div>
 
-<main class="min-h-screen">
+        <!-- Desktop Menu (Center) -->
+        <div class="hidden md:flex items-center space-x-8 justify-center">
+            <a href="/about" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">About Us</a>
+            <a href="/services" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">Services</a>
+            <a href="/reviews" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">Reviews</a>
+            <a href="/contact" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">Contact</a>
+        </div>
+
+        <!-- Desktop CTAs (Right) -->
+        <div class="flex-1 hidden md:flex items-center justify-end space-x-4">
+            <a href="/auth/login" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">Log in</a>
+            <a href="/auth/signup" class="text-sm font-medium bg-gray-900 text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors">Sign up</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white absolute w-full left-0 shadow-lg">
+        <div class="flex flex-col px-6 py-4 space-y-4">
+            <a href="/" class="text-base font-medium text-gray-900">Home</a>
+            <a href="/about" class="text-base font-medium text-gray-600">About</a>
+            <a href="/services" class="text-base font-medium text-gray-600">Services</a>
+            <a href="/reviews" class="text-base font-medium text-gray-600">Reviews</a>
+            <a href="/contact" class="text-base font-medium text-gray-600">Contact</a>
+            <hr class="border-gray-100">
+            <a href="/auth/login" class="text-base font-medium text-gray-900">Log in</a>
+            <a href="/auth/signup" class="text-base font-medium text-brand-600">Sign up</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="flex-grow">
     {% block content %}{% endblock %}
 </main>
 
-<footer class="bg-gray-800 text-white text-center py-6 mt-12">
-    &copy; 2026 SmartPark. All rights reserved.
+<!-- Footer -->
+<footer class="bg-gray-50 border-t border-gray-200 mt-24">
+    <div class="max-w-7xl mx-auto px-6 py-12 lg:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <a href="/" class="flex items-center gap-2 mb-4">
+                    <div class="w-6 h-6 bg-gray-900 rounded-md flex items-center justify-center">
+                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <span class="text-lg font-bold tracking-tight text-gray-900">SmartPark</span>
+                </a>
+                <p class="text-sm text-gray-500 leading-relaxed max-w-xs">
+                    Intelligent parking reservations and management for seamless mobility.
+                </p>
+            </div>
+            
+            <!-- Links -->
+            <div>
+                <h3 class="text-xs font-semibold text-gray-900 tracking-wider uppercase mb-4">Product</h3>
+                <ul class="space-y-3">
+                    <li><a href="/services" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Features</a></li>
+                    <li><a href="/reviews" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Reviews</a></li>
+                    <li><a href="/auth/login" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xs font-semibold text-gray-900 tracking-wider uppercase mb-4">Company</h3>
+                <ul class="space-y-3">
+                    <li><a href="/about" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">About Us</a></li>
+                    <li><a href="/contact" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Contact Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xs font-semibold text-gray-900 tracking-wider uppercase mb-4">Legal</h3>
+                <ul class="space-y-3">
+                    <li><a href="/privacy" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy Policy</a></li>
+                    <li><a href="/terms" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-400">
+                &copy; 2026 SmartPark. All rights reserved.
+            </p>
+        </div>
+    </div>
 </footer>
+
+<script>
+    // Simple mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        if (btn && menu) {
+            btn.addEventListener('click', function() {
+                menu.classList.toggle('hidden');
+            });
+        }
+    });
+</script>
 {% endblock %}
