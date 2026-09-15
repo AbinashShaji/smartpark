@@ -1,0 +1,71 @@
+/* Premium Hover Animations */
+
+/* 1. Text Links */
+.hover-underline {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.hover-underline:hover {
+    color: #2563eb !important; /* Tailwind blue-600 */
+}
+
+.hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #2563eb;
+    transform-origin: bottom left;
+    transition: transform 0.3s ease-out;
+}
+
+.hover-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* 2. Primary Buttons */
+.btn-primary-hover {
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.btn-primary-hover:hover {
+    background-color: #2563eb !important; /* Ford Royal Blue */
+    color: #ffffff !important;
+    box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* Secondary Buttons */
+.btn-secondary-hover {
+    transition: color 0.3s ease !important;
+}
+
+.btn-secondary-hover:hover {
+    color: #2563eb !important; /* Ford Royal Blue */
+}
+
+/* 3. SmartPark Logo Hover */
+.brand-logo .word-smart,
+.brand-logo .word-park {
+    transition: color 0.3s ease;
+}
+
+.brand-logo .word-smart {
+    color: #000;
+}
+
+.brand-logo .word-park {
+    color: #2563eb; /* Tailwind blue-600 */
+}
+
+.brand-logo:hover .word-smart {
+    color: #2563eb;
+}
+
+.brand-logo:hover .word-park {
+    color: #000;
+}

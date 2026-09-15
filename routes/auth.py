@@ -27,6 +27,18 @@ def register():
         email = request.form.get('email')
         phone = request.form.get('phone')
         password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        terms = request.form.get('terms')
+        
+        # Validation
+        if not terms:
+            flash('You must accept the Terms of Service and Privacy Policy.', 'error')
+            return render_template('auth/signup.html')
+            
+        if password != confirm_password:
+            flash('Passwords do not match.', 'error')
+            return render_template('auth/signup.html')
+        
         
         success, result = User.create(name, email, phone, password)
         if success:

@@ -33,3 +33,7 @@ def privacy():
 @bp.route('/terms')
 def terms():
     return render_template('public/terms.html')
+
+@bp.route('/faq')
+def faq():
+    return render_template('public/faq.html')

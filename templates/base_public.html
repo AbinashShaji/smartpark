@@ -6,32 +6,27 @@
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <!-- Logo (Left) -->
         <div class="flex-1 flex justify-start">
-            <a href="/" class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
-                <span class="text-xl font-bold tracking-tight text-gray-900">SmartPark</span>
+            <a href="/" class="flex items-center gap-2 brand-logo">
+                <span class="text-2xl md:text-3xl font-black tracking-tighter text-black"><span class="word-smart">Smart</span><span class="word-park text-blue-600">Park</span></span>
             </a>
         </div>
 
         <!-- Desktop Menu (Center) -->
         <div class="hidden md:flex items-center space-x-8 justify-center">
-            <a href="/about" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">About Us</a>
-            <a href="/services" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">Services</a>
-            <a href="/reviews" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">Reviews</a>
-            <a href="/contact" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">Contact</a>
+            <a href="/about" class="text-sm font-medium text-black hover-underline transition-colors">About Us</a>
+            <a href="/services" class="text-sm font-medium text-black hover-underline transition-colors">Services</a>
+            <a href="/reviews" class="text-sm font-medium text-black hover-underline transition-colors">Reviews</a>
+            <a href="/contact" class="text-sm font-medium text-black hover-underline transition-colors">Contact</a>
         </div>
 
         <!-- Desktop CTAs (Right) -->
         <div class="flex-1 hidden md:flex items-center justify-end space-x-4">
-            <a href="/auth/login" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">Log in</a>
-            <a href="/auth/signup" class="text-sm font-medium bg-gray-900 text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors">Sign up</a>
+            <a href="/auth/login" class="text-sm font-medium text-black hover-underline transition-colors">Log in</a>
+            <a href="{{ url_for('auth.register') }}" class="text-sm font-medium bg-black text-white px-5 py-2.5 rounded-full hover:bg-neutral-900 transition-colors btn-primary-hover">Sign up</a>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none">
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-black focus:outline-none">
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -41,14 +36,14 @@
     <!-- Mobile Menu (Hidden by default) -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white absolute w-full left-0 shadow-lg">
         <div class="flex flex-col px-6 py-4 space-y-4">
-            <a href="/" class="text-base font-medium text-gray-900">Home</a>
-            <a href="/about" class="text-base font-medium text-gray-600">About</a>
-            <a href="/services" class="text-base font-medium text-gray-600">Services</a>
-            <a href="/reviews" class="text-base font-medium text-gray-600">Reviews</a>
-            <a href="/contact" class="text-base font-medium text-gray-600">Contact</a>
+            <a href="/" class="text-base font-medium text-black hover-underline">Home</a>
+            <a href="/about" class="text-base font-medium text-gray-600 hover-underline">About</a>
+            <a href="/services" class="text-base font-medium text-gray-600 hover-underline">Services</a>
+            <a href="/reviews" class="text-base font-medium text-gray-600 hover-underline">Reviews</a>
+            <a href="/contact" class="text-base font-medium text-gray-600 hover-underline">Contact</a>
             <hr class="border-gray-100">
-            <a href="/auth/login" class="text-base font-medium text-gray-900">Log in</a>
-            <a href="/auth/signup" class="text-base font-medium text-brand-600">Sign up</a>
+            <a href="/auth/login" class="text-base font-medium text-black hover-underline">Log in</a>
+            <a href="{{ url_for('auth.register') }}" class="text-base font-medium text-black hover-underline">Sign up</a>
         </div>
     </div>
 </nav>
@@ -59,50 +54,53 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-gray-50 border-t border-gray-200 mt-24">
-    <div class="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
+<footer class="bg-white border-t border-gray-200 mt-20">
+    <div class="max-w-7xl mx-auto px-6 pt-16 pb-12">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-16">
             <!-- Brand -->
-            <div class="col-span-1 md:col-span-1">
-                <a href="/" class="flex items-center gap-2 mb-4">
-                    <div class="w-6 h-6 bg-gray-900 rounded-md flex items-center justify-center">
-                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <span class="text-lg font-bold tracking-tight text-gray-900">SmartPark</span>
+            <div class="md:w-1/3 shrink-0">
+                <a href="/" class="flex items-center gap-1 mb-4 brand-logo">
+                    <span class="text-2xl font-black tracking-tighter text-black"><span class="word-smart">Smart</span><span class="word-park text-blue-600">Park</span></span>
                 </a>
-                <p class="text-sm text-gray-500 leading-relaxed max-w-xs">
+                <p class="text-sm text-gray-500 leading-relaxed max-w-[260px]">
                     Intelligent parking reservations and management for seamless mobility.
                 </p>
             </div>
             
             <!-- Links -->
-            <div>
-                <h3 class="text-xs font-semibold text-gray-900 tracking-wider uppercase mb-4">Product</h3>
-                <ul class="space-y-3">
-                    <li><a href="/services" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Features</a></li>
-                    <li><a href="/reviews" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Reviews</a></li>
-                    <li><a href="/auth/login" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Login</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xs font-semibold text-gray-900 tracking-wider uppercase mb-4">Company</h3>
-                <ul class="space-y-3">
-                    <li><a href="/about" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">About Us</a></li>
-                    <li><a href="/contact" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Contact Support</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xs font-semibold text-gray-900 tracking-wider uppercase mb-4">Legal</h3>
-                <ul class="space-y-3">
-                    <li><a href="/privacy" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy Policy</a></li>
-                    <li><a href="/terms" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Terms of Service</a></li>
-                </ul>
+            <div class="md:w-2/3 w-full flex flex-wrap sm:flex-nowrap justify-between gap-10 sm:gap-4">
+                <div class="w-1/2 sm:w-auto">
+                    <h3 class="text-xs font-bold text-black tracking-wider uppercase mb-5">Product</h3>
+                    <ul class="space-y-4">
+                        <li><a href="{{ url_for('public.services') }}" class="text-sm text-gray-500 hover-underline hover:font-medium transition-colors inline-block">Services</a></li>
+                        <li><a href="{{ url_for('public.reviews') }}" class="text-sm text-gray-500 hover-underline hover:font-medium transition-colors inline-block">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="w-1/2 sm:w-auto">
+                    <h3 class="text-xs font-bold text-black tracking-wider uppercase mb-5">Company</h3>
+                    <ul class="space-y-4">
+                        <li><a href="{{ url_for('public.about') }}" class="text-sm text-gray-500 hover-underline hover:font-medium transition-colors inline-block">About</a></li>
+                        <li><a href="{{ url_for('public.contact') }}" class="text-sm text-gray-500 hover-underline hover:font-medium transition-colors inline-block">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="w-1/2 sm:w-auto">
+                    <h3 class="text-xs font-bold text-black tracking-wider uppercase mb-5">Support</h3>
+                    <ul class="space-y-4">
+                        <li><a href="{{ url_for('public.faq') }}" class="text-sm text-gray-500 hover-underline hover:font-medium transition-colors inline-block">FAQ</a></li>
+                        <li><a href="{{ url_for('auth.login') }}" class="text-sm text-gray-500 hover-underline hover:font-medium transition-colors inline-block">Login</a></li>
+                    </ul>
+                </div>
+                <div class="w-1/2 sm:w-auto">
+                    <h3 class="text-xs font-bold text-black tracking-wider uppercase mb-5">Legal</h3>
+                    <ul class="space-y-4">
+                        <li><a href="{{ url_for('public.privacy') }}" class="text-sm text-gray-500 hover-underline hover:font-medium transition-colors inline-block">Privacy Policy</a></li>
+                        <li><a href="{{ url_for('public.terms') }}" class="text-sm text-gray-500 hover-underline hover:font-medium transition-colors inline-block">Terms of Service</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-sm text-gray-400">
+        <div class="mt-16 pt-8 border-t border-gray-200">
+            <p class="text-xs text-gray-400">
                 &copy; 2026 SmartPark. All rights reserved.
             </p>
         </div>

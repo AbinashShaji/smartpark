@@ -15,16 +15,19 @@
   - **Contact**: Contact form and support details.
   - **Privacy**: Legal policy covering account info, vehicle info, and access logs.
   - **Terms**: Terms of service covering booking validity, extensions, and digital access.
+  - **FAQ**: Added a new FAQ page covering getting started, parking access, payments, and technology. Accessible from the public footer.
   - **Errors**: Designed and implemented custom FinZave-inspired typography-led 404 (Not Found) and 500 (Internal Server Error) pages, integrated with Flask's error handlers.
 
 ## Current UI Status
-- **Public Pages**: COMPLETED and VERIFIED via local Flask server. Responsive behavior (Tailwind CSS) integrated. No React, no component libraries.
-- **Authentication Pages**: Pending implementation.
+- **Public Pages**: COMPLETED and VERIFIED via local Flask server. Responsive behavior (Tailwind CSS) integrated. No React, no component libraries. Includes a fully designed FAQ and a medium-sized, spacious, premium FinZave-inspired footer across all public routes.
+- **Visual Theme**: COMPLETED. Removed the previous slate/navy dark theme. The public pages now use a strict TRUE BLACK and white monochrome system (FinZave style), featuring highly restrained Ford Royal Blue accents for critical UI highlights (e.g., active steps, "PARK" keywords).
+- **Interactions**: COMPLETED. Implemented premium FinZave-inspired hover animations globally in `style.css` for text links (blue animating underline), primary buttons (slight elevation and blue shadow), and the SmartPark logo (black/blue text color swap).
+- **Authentication Pages**: COMPLETED. Redesigned `auth/login.html` and `auth/signup.html` into a premium FinZave-inspired two-column layout. Implemented vanilla JS for password visibility, real-time password strength requirements, and confirm password matching. Added matching minimal backend validation in `routes/auth.py` for confirm password and password strength, while ensuring sensitive confirm variables are never stored in the database.
 - **User Dashboard**: Pending implementation.
 - **Admin Dashboard**: Pending implementation.
 
 ## Pending Tasks
-- Implement Authentication frontend (`auth/login.html`, `auth/signup.html`).
+- Implement User Dashboard frontend.
 - Implement User Dashboard frontend.
 - Implement Admin Dashboard frontend.
 - Integrate frontend with backend route logic and SQLite database models.

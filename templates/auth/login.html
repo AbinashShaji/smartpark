@@ -1,7 +1,114 @@
 {% extends 'base_public.html' %}
 
+{% block title %}Login | SmartPark{% endblock %}
+
 {% block content %}
-<div class="flex items-center justify-center h-full">
-    <h2 class="text-3xl font-bold">Login</h2>
+<div class="min-h-[85vh] flex bg-white">
+    <!-- LEFT COLUMN - Brand Message -->
+    <div class="hidden lg:flex lg:w-1/2 bg-black text-white p-20 flex-col justify-center relative overflow-hidden">
+        <div class="relative z-10 max-w-lg">
+            <h1 class="text-[4rem] xl:text-[5rem] font-bold tracking-tighter leading-[0.9] mb-8">
+                Find your place.<br>
+                <span class="text-gray-400">Park with confidence.</span>
+            </h1>
+            <p class="text-xl text-gray-400 leading-relaxed max-w-md">
+                Log in to access your parking reservations, manage your vehicles, and review your digital access credentials.
+            </p>
+        </div>
+        <!-- Decorative subtle element -->
+        <div class="absolute bottom-0 right-0 p-12 opacity-10">
+            <span class="text-[10rem] font-black tracking-tighter">SP.</span>
+        </div>
+    </div>
+
+    <!-- RIGHT COLUMN - Form Area -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 lg:p-20">
+        <div class="w-full max-w-md">
+            
+            <div class="mb-10 lg:hidden text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-black mb-3">Welcome back.</h1>
+                <p class="text-gray-500">Access your SmartPark account.</p>
+            </div>
+
+            <div class="mb-10 hidden lg:block">
+                <h2 class="text-3xl font-bold tracking-tight text-black">Welcome back.</h2>
+            </div>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="mb-8 space-y-3">
+                        {% for category, message in messages %}
+                            {% if category == 'error' %}
+                                <div class="bg-white border-l-4 border-black text-black px-4 py-3 text-sm font-medium shadow-sm">
+                                    {{ message }}
+                                </div>
+                            {% else %}
+                                <div class="bg-white border-l-4 border-gray-300 text-gray-700 px-4 py-3 text-sm font-medium shadow-sm">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <!-- Login Form -->
+            <form action="{{ url_for('auth.login') }}" method="POST" class="space-y-6">
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">Email Address</label>
+                    <input type="email" name="email" id="email" required 
+                           class="w-full px-0 py-3 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black outline-none transition-colors bg-transparent text-black text-lg font-medium placeholder-gray-300"
+                           placeholder="name@example.com">
+                </div>
+
+                <!-- Password -->
+                <div class="relative">
+                    <div class="flex justify-between items-center mb-2">
+                        <label for="password" class="block text-xs font-bold text-gray-500 uppercase tracking-widest">Password</label>
+                        <button type="button" id="togglePassword" class="text-xs font-bold text-gray-400 hover:text-black transition-colors focus:outline-none uppercase tracking-widest">
+                            Show
+                        </button>
+                    </div>
+                    <input type="password" name="password" id="password" required 
+                           class="w-full px-0 py-3 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black outline-none transition-colors bg-transparent text-black text-lg font-medium placeholder-gray-300"
+                           placeholder="••••••••">
+                </div>
+
+                <!-- Submit -->
+                <div class="pt-8">
+                    <button type="submit" 
+                            class="w-full flex justify-center items-center py-4 px-4 rounded-full text-lg font-bold text-white bg-black hover:bg-black transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black btn-primary-hover">
+                        Log In
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Footer link -->
+            <div class="mt-12 text-center lg:text-left">
+                <p class="text-gray-500">
+                    Don't have an account? 
+                    <a href="{{ url_for('auth.register') }}" class="font-bold text-black pb-0.5 hover-underline">Create one</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        
+        if(togglePassword && password) {
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.textContent = type === 'password' ? 'SHOW' : 'HIDE';
+            });
+        }
+    });
+</script>
 {% endblock %}
