@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block layout %}
+<div class="flex h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r flex flex-col">
+        <div class="p-6 text-2xl font-bold text-blue-600 border-b">SmartPark</div>
+        <nav class="p-4 space-y-2 flex-1">
+            {% block sidebar %}{% endblock %}
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Top header -->
+        <header class="bg-white shadow-sm flex items-center justify-between p-4">
+            <h1 class="text-xl font-semibold">{% block header_title %}Dashboard{% endblock %}</h1>
+            <div>
+                <a href="/auth/logout" class="text-gray-500 hover:text-red-500">Logout</a>
+            </div>
+        </header>
+
+        <!-- Main body -->
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</div>
+{% endblock %}
