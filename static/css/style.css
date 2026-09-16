@@ -1,13 +1,24 @@
-/* Premium Hover Animations */
+/* ============================================
+   SmartPark — Premium Interaction & Animation
+   ============================================ */
 
-/* 1. Text Links */
+/* --- 0. Page Load --- */
+@keyframes pageIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+body {
+    animation: pageIn 0.4s ease-out both;
+}
+
+/* --- 1. Text Link Hover --- */
 .hover-underline {
     position: relative;
     transition: color 0.3s ease;
 }
 
 .hover-underline:hover {
-    color: #2563eb !important; /* Tailwind blue-600 */
+    color: #2563eb !important;
 }
 
 .hover-underline::after {
@@ -28,44 +39,137 @@
     transform-origin: bottom left;
 }
 
-/* 2. Primary Buttons */
+/* --- 2. Primary Button Hover --- */
 .btn-primary-hover {
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .btn-primary-hover:hover {
-    background-color: #2563eb !important; /* Ford Royal Blue */
+    background-color: #2563eb !important;
     color: #ffffff !important;
     box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.4) !important;
 }
 
-/* Secondary Buttons */
+/* --- 3. Secondary Button Hover --- */
 .btn-secondary-hover {
     transition: color 0.3s ease !important;
 }
 
 .btn-secondary-hover:hover {
-    color: #2563eb !important; /* Ford Royal Blue */
+    color: #2563eb !important;
 }
 
-/* 3. SmartPark Logo Hover */
+/* --- 4. SmartPark Logo Hover --- */
 .brand-logo .word-smart,
 .brand-logo .word-park {
     transition: color 0.3s ease;
 }
 
-.brand-logo .word-smart {
-    color: #000;
+.brand-logo .word-smart { color: #000; }
+.brand-logo .word-park  { color: #2563eb; }
+
+.brand-logo:hover .word-smart { color: #2563eb; }
+.brand-logo:hover .word-park  { color: #000; }
+
+/* --- 5. Hero Word Reveal --- */
+.hero-reveal {
+    overflow: hidden;
 }
 
-.brand-logo .word-park {
-    color: #2563eb; /* Tailwind blue-600 */
+.hero-reveal .hw {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    margin-right: 0.25em;
 }
 
-.brand-logo:hover .word-smart {
+.hero-reveal .hw.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 6. Hero Supporting Content Stagger --- */
+.hero-fade {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition-delay: var(--delay, 0s);
+}
+
+.hero-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 7. Scroll Reveal --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 8. Card Hover --- */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.12);
+}
+
+/* --- 9. FAQ Smooth Accordion --- */
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.faq-content.open {
+    max-height: var(--faq-h, 600px);
+}
+
+.faq-btn .icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-btn[aria-expanded="true"] .icon {
+    transform: rotate(180deg);
+}
+
+.faq-btn[aria-expanded="true"] span:first-child {
     color: #2563eb;
 }
 
-.brand-logo:hover .word-park {
-    color: #000;
+/* --- 10. Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none !important;
+    }
+
+    .hero-reveal .hw,
+    .hero-fade,
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .card-hover {
+        transition: none !important;
+    }
+
+    .card-hover:hover {
+        transform: none !important;
+    }
+
+    .faq-content {
+        transition: none !important;
+    }
 }

@@ -6,14 +6,14 @@
 <!-- 01 — HERO -->
 <section class="relative min-h-[90vh] flex flex-col justify-center items-center bg-white overflow-hidden pt-20 pb-32 border-b border-gray-200">
     <div class="max-w-5xl mx-auto px-6 text-center w-full z-10">
-        <h1 class="text-[4rem] md:text-[6rem] lg:text-[7.5rem] font-bold tracking-tighter leading-[0.9] mb-8">
+        <h1 class="hero-reveal text-[4rem] md:text-[6rem] lg:text-[7.5rem] font-bold tracking-tighter leading-[0.9] mb-8">
             <span class="block text-black">Find parking.</span>
             <span class="block text-gray-300 mt-1 md:mt-2">Park with confidence.</span>
         </h1>
-        <p class="text-lg md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+        <p class="hero-fade text-lg md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed" style="--delay:0.6">
             SmartPark helps you find available parking, choose a slot that fits your vehicle, reserve it, and access it effortlessly.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div class="hero-fade flex flex-col sm:flex-row gap-4 justify-center items-center" style="--delay:0.8">
             <a href="{{ url_for('auth.register') }}" class="inline-flex justify-center items-center px-10 py-4 bg-black text-white rounded-full font-medium text-lg hover:bg-black transition-colors w-full sm:w-auto shadow-xl hover:shadow-2xl btn-primary-hover">
                 Find Parking
             </a>
@@ -25,7 +25,7 @@
 </section>
 
 <!-- 02 — THE PROBLEM -->
-<section class="py-24 md:py-32 bg-gray-50 border-b border-gray-200">
+<section class="reveal py-24 md:py-32 bg-gray-50 border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div class="lg:col-span-5 sticky top-24">
@@ -61,7 +61,7 @@
 </section>
 
 <!-- 03 — THE SMARTPARK SOLUTION -->
-<section class="py-32 bg-black text-white border-b border-neutral-900">
+<section class="reveal py-32 bg-black text-white border-b border-neutral-900">
     <div class="max-w-5xl mx-auto px-6 text-center">
         <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">The Solution</span>
         <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-16 leading-tight">
@@ -88,7 +88,7 @@
 </section>
 
 <!-- 04 — HOW IT WORKS -->
-<section class="py-24 md:py-32 bg-white">
+<section class="reveal py-24 md:py-32 bg-white">
     <div class="max-w-7xl mx-auto px-6">
         <div class="max-w-3xl mb-24">
             <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">How It Works</span>
@@ -97,7 +97,7 @@
             </h2>
         </div>
 
-        <div class="flex flex-col">
+        <div class="flex flex-col reveal-stagger reveal">
             <!-- Item 1 -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-10 border-t border-gray-200">
                 <div class="md:col-span-2">
@@ -177,7 +177,7 @@
 </section>
 
 <!-- 05 — FIND THE RIGHT PLACE -->
-<section class="py-24 md:py-32 bg-gray-50 border-t border-gray-200 overflow-hidden">
+<section class="reveal py-24 md:py-32 bg-gray-50 border-t border-gray-200 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="order-2 lg:order-1 relative">
@@ -243,7 +243,7 @@
 </section>
 
 <!-- 06 — AVAILABILITY PREDICTION -->
-<section class="py-24 md:py-32 bg-white">
+<section class="reveal py-24 md:py-32 bg-white">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -287,7 +287,7 @@
 </section>
 
 <!-- 07 — VEHICLE-AWARE PARKING -->
-<section class="py-24 md:py-32 bg-black text-white">
+<section class="reveal py-24 md:py-32 bg-black text-white">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="order-2 lg:order-1 flex justify-center">
@@ -328,7 +328,7 @@
 </section>
 
 <!-- 08 — RESERVE BEFORE YOU ARRIVE -->
-<section class="py-24 md:py-32 bg-gray-50 border-y border-gray-200">
+<section class="reveal py-24 md:py-32 bg-gray-50 border-y border-gray-200">
     <div class="max-w-7xl mx-auto px-6 text-center">
         <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Reservations</span>
         <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight mb-16">
@@ -357,7 +357,7 @@
 </section>
 
 <!-- 09 — DIGITAL ACCESS -->
-<section class="py-24 md:py-32 bg-white">
+<section class="reveal py-24 md:py-32 bg-white">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -390,7 +390,7 @@
 </section>
 
 <!-- 10 — WHY SMARTPARK -->
-<section class="py-24 md:py-32 bg-gray-50 border-y border-gray-200">
+<section class="reveal py-24 md:py-32 bg-gray-50 border-y border-gray-200">
     <div class="max-w-5xl mx-auto px-6">
         <div class="text-center mb-20">
             <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Why SmartPark</span>
@@ -434,7 +434,7 @@
 </section>
 
 <!-- 11 — TRUST / REVIEWS PREVIEW -->
-<section class="py-24 md:py-32 bg-white">
+<section class="reveal py-24 md:py-32 bg-white">
     <div class="max-w-7xl mx-auto px-6 text-center">
         <span class="block text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Real Experiences</span>
         <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight mb-16">
@@ -471,7 +471,7 @@
 </section>
 
 <!-- 12 — FINAL CTA -->
-<section class="py-32 bg-black text-center">
+<section class="reveal py-32 bg-black text-center">
     <div class="max-w-3xl mx-auto px-6">
         <h2 class="text-[3rem] md:text-[5rem] font-bold tracking-tighter text-white leading-tight mb-8">
             Find your place.<br>
