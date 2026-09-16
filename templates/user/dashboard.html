@@ -1,1 +1,142 @@
-<!-- dashboard.html -->
+{% extends 'base_dashboard.html' %}
+{% set active_page = 'dashboard' %}
+
+{% block title %}Dashboard | SmartPark{% endblock %}
+{% block header_title %}Welcome back, {{ session.get('user_name', 'User') }}{% endblock %}
+
+{% block content %}
+<div class="space-y-10">
+
+    <!-- ACTION FIRST: Find Parking Hero -->
+    <section class="bg-black text-white rounded-3xl p-8 lg:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <!-- Abstract Decoration -->
+        <div class="absolute -right-20 -top-20 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute right-20 -bottom-20 w-48 h-48 bg-blue-500/20 rounded-full blur-2xl pointer-events-none"></div>
+        
+        <div class="max-w-xl z-10">
+            <p class="text-[11px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-3">Find Parking</p>
+            <h2 class="text-3xl lg:text-5xl font-bold tracking-tighter leading-tight mb-4">
+                Where do you want to park today?
+            </h2>
+            <p class="text-gray-400 text-lg mb-8 max-w-md">
+                Find availability in real-time, book a spot, and get guaranteed access.
+            </p>
+            <a href="/parking/" class="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-100 hover:scale-[0.98] transition-all duration-200">
+                <i data-lucide="search" class="w-5 h-5"></i>
+                Find Parking Now
+            </a>
+        </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Main Column -->
+        <div class="lg:col-span-8 space-y-8">
+            <!-- Upcoming Booking -->
+            <section>
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold tracking-tight text-gray-900">Your Active Booking</h3>
+                    <a href="/user/bookings" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">View all</a>
+                </div>
+
+                {% if upcoming_booking %}
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                    {% if upcoming_booking.booking_status == 'ACTIVE' %}
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-green-500"></div>
+                    {% else %}
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+                    {% endif %}
+                    
+                    <div class="flex flex-col md:flex-row justify-between gap-6">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                {% if upcoming_booking.booking_status == 'ACTIVE' %}
+                                <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Active Now</span>
+                                {% else %}
+                                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Upcoming</span>
+                                {% endif %}
+                                <span class="text-sm font-medium text-gray-500">{{ upcoming_booking.booking_date }}</span>
+                            </div>
+                            <h4 class="text-2xl font-bold text-gray-900 mb-1">{{ upcoming_booking.parking_name }}</h4>
+                            <p class="text-gray-500 flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                {{ upcoming_booking.parking_address }}
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col gap-4 text-right">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-1">Allocated Slot</p>
+                                <p class="text-3xl font-black tracking-tighter text-gray-900">{{ upcoming_booking.slot_number }}</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-1">Time</p>
+                                <p class="text-lg font-bold text-gray-900">{{ upcoming_booking.start_time[:5] }} - {{ upcoming_booking.end_time[:5] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div class="flex items-center gap-2 text-sm text-gray-600">
+                            <i data-lucide="car" class="w-4 h-4"></i>
+                            <span class="font-medium">{{ upcoming_booking.vehicle_number }}</span>
+                            <span class="text-gray-400">|</span>
+                            <span>{{ upcoming_booking.vehicle_type }}</span>
+                        </div>
+                        <a href="/booking/{{ upcoming_booking.id }}" class="w-full sm:w-auto text-center bg-black text-white px-6 py-2.5 rounded-full font-medium hover:bg-gray-800 transition-colors">
+                            View Details & Access
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Empty State -->
+                <div class="bg-white border border-dashed border-gray-300 rounded-2xl p-10 text-center flex flex-col items-center justify-center">
+                    <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 mb-4">
+                        <i data-lucide="calendar-x" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">No bookings yet</h4>
+                    <p class="text-gray-500 mb-6 max-w-sm">You don't have any upcoming parking reservations. Find a parking place to get started.</p>
+                </div>
+                {% endif %}
+            </section>
+        </div>
+
+        <!-- Sidebar Column -->
+        <div class="lg:col-span-4 space-y-8">
+            <!-- Notifications -->
+            <section class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-bold tracking-tight text-gray-900">Notifications</h3>
+                    <a href="/user/notifications" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">All</a>
+                </div>
+                
+                <div class="space-y-4">
+                    {% if recent_notifications %}
+                        {% for notif in recent_notifications %}
+                        <div class="flex gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer border border-transparent hover:border-gray-100">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                                {% if notif.type == 'info' %}
+                                    <i data-lucide="info" class="w-5 h-5"></i>
+                                {% elif notif.type == 'success' %}
+                                    <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                {% else %}
+                                    <i data-lucide="bell" class="w-5 h-5"></i>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-900">{{ notif.title }}</p>
+                                <p class="text-sm text-gray-500 mt-0.5 line-clamp-2">{{ notif.message }}</p>
+                                <p class="text-xs text-gray-400 mt-2">{{ notif.created_at[:10] }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center py-6">
+                            <p class="text-gray-500 text-sm">You're all caught up.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

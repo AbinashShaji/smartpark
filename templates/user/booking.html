@@ -1,1 +1,160 @@
-<!-- booking.html -->
+{% extends 'base_dashboard.html' %}
+{% set active_page = 'find_parking' %}
+
+{% block title %}Book Parking | SmartPark{% endblock %}
+{% block header_title %}Complete Booking{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto space-y-8">
+    <div class="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
+        <div class="mb-8 border-b border-gray-100 pb-6">
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-2">Reserve your parking</h2>
+            <p class="text-gray-500">at <span class="font-semibold text-gray-900">{{ location.name }}</span></p>
+        </div>
+
+        <!-- Flash messages for errors -->
+        {% with messages = get_flashed_messages(category_filter=["error"]) %}
+            {% if messages %}
+                <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3">
+                    <i data-lucide="alert-circle" class="w-5 h-5 text-red-600 shrink-0 mt-0.5"></i>
+                    <div>
+                        {% for message in messages %}
+                            <p class="text-sm font-medium text-red-800">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form id="bookingForm" method="POST" class="space-y-8" action="{{ url_for('booking.new', location_id=location.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            
+            <!-- Date & Time -->
+            <div class="space-y-6">
+                <h3 class="text-xs font-semibold tracking-widest text-gray-400 uppercase">1. Date & Time</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Date</label>
+                        <input type="date" name="date" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-shadow" min="{{ now | default('2023-01-01') }}">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Start Time</label>
+                        <input type="time" name="start_time" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-shadow">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">End Time</label>
+                        <input type="time" name="end_time" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-shadow">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Details -->
+            <div class="space-y-6 pt-6 border-t border-gray-100">
+                <h3 class="text-xs font-semibold tracking-widest text-gray-400 uppercase">2. Vehicle Details</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Vehicle Type</label>
+                        <select name="vehicle_type" id="vehicle_type" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-shadow" onchange="updateCategories()">
+                            <option value="">Select Type...</option>
+                            <option value="Car">Car</option>
+                            <option value="Bike">Bike</option>
+                            <option value="Bus">Bus</option>
+                            <option value="Truck">Truck</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Vehicle Category</label>
+                        <select name="vehicle_category" id="vehicle_category" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-shadow">
+                            <option value="">Select Category...</option>
+                        </select>
+                        <p class="text-xs text-gray-500">Required for SmartPark to allocate a compatible slot size.</p>
+                    </div>
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700">Vehicle Number</label>
+                        <input type="text" name="vehicle_number" required placeholder="e.g. MH 01 AB 1234" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-shadow uppercase">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Information Callout -->
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3 text-blue-800">
+                <i data-lucide="info" class="w-5 h-5 shrink-0 mt-0.5"></i>
+                <div class="text-sm">
+                    <p class="font-semibold mb-1">Automatic Slot Allocation</p>
+                    <p>SmartPark will automatically check availability and allocate a suitable slot for your vehicle based on the details provided above.</p>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="pt-8">
+                <button type="button" onclick="startAllocation()" class="w-full bg-black text-white px-6 py-4 rounded-xl font-bold hover:bg-gray-800 transition-colors flex justify-center items-center gap-2">
+                    Proceed to Allocation
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- Loading / Allocation State (Hidden by default) -->
+        <div id="allocationState" class="hidden py-12 flex flex-col items-center justify-center text-center">
+            <div class="w-16 h-16 border-4 border-gray-200 border-t-black rounded-full animate-spin mb-6"></div>
+            <h3 class="text-2xl font-bold tracking-tight text-gray-900 mb-2" id="allocationText">Checking availability...</h3>
+            <p class="text-gray-500 max-w-sm">Please wait while SmartPark finds a compatible slot for your vehicle.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const categories = {
+        'Car': ['Hatchback', 'Sedan', 'SUV', 'MUV', 'Pickup', 'Other'],
+        'Bike': ['Standard'],
+        'Bus': ['Mini Bus', '20-30 seats', '31-40 seats', '41-50 seats', '50+ seats'],
+        'Truck': ['Light', 'Medium', 'Heavy']
+    };
+
+    function updateCategories() {
+        const typeSelector = document.getElementById('vehicle_type');
+        const categorySelector = document.getElementById('vehicle_category');
+        const selectedType = typeSelector.value;
+        
+        categorySelector.innerHTML = '<option value="">Select Category...</option>';
+        
+        if (selectedType && categories[selectedType]) {
+            categories[selectedType].forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelector.appendChild(option);
+            });
+        }
+    }
+
+    function startAllocation() {
+        const form = document.getElementById('bookingForm');
+        
+        // Basic HTML5 validation trigger
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        form.style.display = 'none';
+        const allocationState = document.getElementById('allocationState');
+        const allocationText = document.getElementById('allocationText');
+        allocationState.classList.remove('hidden');
+
+        // Fake the steps for better UX
+        setTimeout(() => {
+            allocationText.textContent = "Checking compatibility...";
+        }, 800);
+
+        setTimeout(() => {
+            allocationText.textContent = "Allocating parking slot...";
+        }, 1600);
+
+        // Submit actual form to backend
+        setTimeout(() => {
+            form.submit();
+        }, 2400);
+    }
+</script>
+{% endblock %}

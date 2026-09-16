@@ -1,1 +1,66 @@
-<!-- booking_success.html -->
+{% extends 'base_dashboard.html' %}
+{% set active_page = 'my_bookings' %}
+
+{% block title %}Booking Confirmed | SmartPark{% endblock %}
+{% block header_title %}Booking Confirmed{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-8">
+    <div class="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-xl text-center">
+        <!-- Success Header -->
+        <div class="bg-green-500 px-8 py-12 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+')] opacity-50"></div>
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-green-500 mb-4 shadow-lg scale-in-center">
+                    <i data-lucide="check-circle" class="w-10 h-10"></i>
+                </div>
+                <h2 class="text-3xl font-black text-white tracking-tight mb-2">Booking Confirmed!</h2>
+                <p class="text-green-50 font-medium">Your parking spot is guaranteed.</p>
+            </div>
+        </div>
+
+        <div class="p-8 space-y-8">
+            <!-- Ticket Info -->
+            <div class="grid grid-cols-2 gap-y-6 gap-x-4 text-left">
+                <div>
+                    <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Location</p>
+                    <p class="font-bold text-gray-900">{{ booking.parking_name }}</p>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Allocated Slot</p>
+                    <p class="text-2xl font-black tracking-tighter text-blue-600">{{ booking.slot_number }}</p>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Date</p>
+                    <p class="font-medium text-gray-900">{{ booking.booking_date }}</p>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Time</p>
+                    <p class="font-medium text-gray-900">{{ booking.start_time[:5] }} - {{ booking.end_time[:5] }}</p>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-100">
+                <a href="/booking/{{ booking.id }}" class="flex-1 bg-black text-white px-6 py-4 rounded-xl font-bold hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                    <i data-lucide="ticket" class="w-5 h-5"></i>
+                    View Access Ticket
+                </a>
+                <a href="/user/dashboard" class="flex-1 bg-gray-100 text-gray-900 px-6 py-4 rounded-xl font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                    Return to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.scale-in-center {
+	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@keyframes scale-in-center {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+</style>
+{% endblock %}

@@ -1,1 +1,83 @@
-<!-- my_bookings.html -->
+{% extends 'base_dashboard.html' %}
+{% set active_page = 'my_bookings' %}
+
+{% block title %}My Bookings | SmartPark{% endblock %}
+{% block header_title %}My Bookings{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+    <div class="flex items-center justify-between mb-2">
+        <h2 class="text-xl font-bold tracking-tight text-gray-900">Your Reservations</h2>
+        <div class="flex gap-2">
+            <button class="px-4 py-2 bg-black text-white text-sm font-medium rounded-lg">All</button>
+            <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-900 text-sm font-medium rounded-lg transition-colors">Active</button>
+            <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-900 text-sm font-medium rounded-lg transition-colors">Past</button>
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        {% if bookings %}
+            {% for booking in bookings %}
+            <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                <!-- Status bar -->
+                {% if booking.booking_status == 'ACTIVE' %}
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-green-500"></div>
+                {% elif booking.booking_status == 'CONFIRMED' %}
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+                {% elif booking.booking_status == 'COMPLETED' %}
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-gray-300"></div>
+                {% else %}
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-yellow-500"></div>
+                {% endif %}
+
+                <div class="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center pl-2">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            {% if booking.booking_status == 'ACTIVE' %}
+                                <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest">Active</span>
+                            {% elif booking.booking_status == 'CONFIRMED' %}
+                                <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest">Upcoming</span>
+                            {% elif booking.booking_status == 'COMPLETED' %}
+                                <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest">Completed</span>
+                            {% else %}
+                                <span class="bg-yellow-100 text-yellow-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest">{{ booking.booking_status }}</span>
+                            {% endif %}
+                            <span class="text-sm font-semibold text-gray-500">{{ booking.booking_date }}</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-1">{{ booking.parking_name }}</h4>
+                        <p class="text-sm text-gray-500">{{ booking.parking_address }}</p>
+                    </div>
+
+                    <div class="flex gap-8 items-center w-full md:w-auto">
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase tracking-widest font-semibold mb-1">Time</p>
+                            <p class="font-bold text-gray-900">{{ booking.start_time[:5] }} - {{ booking.end_time[:5] }}</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase tracking-widest font-semibold mb-1">Slot</p>
+                            <p class="font-black text-gray-900 text-xl">{{ booking.slot_number }}</p>
+                        </div>
+                        <div class="ml-auto md:ml-0">
+                            <a href="/booking/{{ booking.id }}" class="inline-flex items-center justify-center w-10 h-10 bg-gray-50 hover:bg-black hover:text-white text-gray-900 rounded-full transition-colors">
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="bg-white border border-dashed border-gray-300 rounded-2xl p-12 text-center flex flex-col items-center">
+                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 mb-4">
+                    <i data-lucide="calendar-x" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-lg font-bold text-gray-900 mb-2">No bookings found</h4>
+                <p class="text-gray-500 mb-6 max-w-sm">You haven't made any parking reservations yet.</p>
+                <a href="/parking/" class="bg-black text-white px-6 py-3 rounded-xl font-medium hover:bg-gray-800 transition-colors">
+                    Find Parking
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

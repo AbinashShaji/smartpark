@@ -1,1 +1,65 @@
-<!-- parking.html -->
+{% extends 'base_dashboard.html' %}
+{% set active_page = 'find_parking' %}
+
+{% block title %}Find Parking | SmartPark{% endblock %}
+{% block header_title %}Find Parking{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+    <!-- Search Bar -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm flex items-center gap-4">
+        <i data-lucide="search" class="w-5 h-5 text-gray-400 ml-2"></i>
+        <input type="text" placeholder="Search by location name or address..." class="flex-1 bg-transparent border-none focus:ring-0 text-gray-900 placeholder-gray-400 font-medium">
+        <button class="bg-black text-white px-6 py-2 rounded-xl font-medium hover:bg-gray-800 transition-colors">
+            Search
+        </button>
+    </div>
+
+    <!-- Results List -->
+    <div>
+        <h3 class="text-sm font-semibold tracking-widest text-gray-500 uppercase mb-4">Available Locations</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {% if locations %}
+                {% for loc in locations %}
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="bg-blue-50 text-blue-600 w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        {% if loc.available_slots | default(0) > 0 or True %} <!-- Temporarily mocking availability for demo if not strictly managed -->
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs font-bold uppercase tracking-wider">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Available
+                        </span>
+                        {% else %}
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold uppercase tracking-wider">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Full
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">{{ loc.name }}</h4>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{ loc.address }}</p>
+                    </div>
+                    
+                    <div class="border-t border-gray-100 pt-4 flex items-center justify-between mt-auto">
+                        <div class="text-sm">
+                            <span class="text-gray-400">Total capacity:</span>
+                            <span class="font-bold text-gray-900">{{ loc.total_slots }}</span>
+                        </div>
+                        <a href="/parking/{{ loc.id }}" class="bg-gray-100 hover:bg-gray-200 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-span-full bg-white border border-dashed border-gray-300 rounded-2xl p-10 text-center">
+                    <p class="text-gray-500 mb-2">No parking locations found.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

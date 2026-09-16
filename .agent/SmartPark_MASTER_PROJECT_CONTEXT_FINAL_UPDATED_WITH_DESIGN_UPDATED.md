@@ -47,10 +47,11 @@ SmartPark is a smart parking reservation system that helps users:
 1.  Find suitable parking locations.
 2.  View current parking availability.
 3.  View parking details and map location.
-4.  Select a suitable parking slot based on vehicle information.
-5.  Reserve a slot.
-6.  Make payment.
-7.  Receive QR and OTP access credentials.
+4.  Start a booking and provide vehicle information.
+5.  Have SmartPark allocate a suitable available parking slot.
+6.  Reserve the allocated slot.
+7.  Make payment.
+8.  Receive QR and OTP access credentials.
 8.  Enter the parking facility using either QR or OTP.
 9.  Exit using QR or OTP.
 10. Automatically release the occupied slot after successful exit.
@@ -79,11 +80,13 @@ SmartPark introduces a centralized digital process:
           ↓
     Predict Future Availability
           ↓
-    Select Vehicle
+    Start Booking
           ↓
-    Find Suitable Slot
+    Enter Vehicle Details
           ↓
-    Reserve
+    Allocate Suitable Slot
+          ↓
+    Reserve Allocated Slot
           ↓
     Pay
           ↓
@@ -188,7 +191,7 @@ User functionality includes:
 -   Dashboard
 -   Find Parking
 -   Parking Details
--   Slot Selection
+-   Slot Allocation
 -   Vehicle Information
 -   Booking
 -   Payment
@@ -341,7 +344,7 @@ Vehicle types:
 -   Bus
 -   Truck
 
-Vehicle information is required before final slot selection because the
+Vehicle information is required before slot allocation because the
 system must determine slot compatibility.
 
 ------------------------------------------------------------------------
@@ -407,9 +410,9 @@ Do not collect unnecessary vehicle information.
 
 ------------------------------------------------------------------------
 
-# 17. VEHICLE-AWARE SLOT SELECTION
+# 17. VEHICLE-AWARE SLOT ALLOCATION
 
-Slot recommendation must consider:
+Slot allocation must consider:
 
 -   vehicle type
 -   vehicle size/category
@@ -427,11 +430,13 @@ Example:
             ↓
     Remove incompatible slots
             ↓
-    Display suitable slots
+    Allocate a suitable slot
             ↓
-    User selects slot
+    Show the allocated slot in the booking
 
-The system must never assign an incompatible slot.
+The user does NOT manually choose an individual parking slot.
+
+The system must never allocate an incompatible slot.
 
 ------------------------------------------------------------------------
 
@@ -509,6 +514,51 @@ Core lifecycle:
 Maintenance may temporarily remove a slot from normal allocation.
 
 ------------------------------------------------------------------------
+
+# 20A. CANONICAL SLOT ALLOCATION DECISION
+
+**IMPORTANT — STABLE PRODUCT DECISION**
+
+SmartPark does NOT require the user to manually choose an individual
+parking slot.
+
+The canonical user journey is:
+
+    FIND PARKING
+          ↓
+    CHECK AVAILABILITY
+          ↓
+    BOOK
+          ↓
+    SLOT ALLOCATED BY SMARTPARK
+          ↓
+    PAY
+          ↓
+    ACCESS
+          ↓
+    PARK
+
+"Available Slots" is an availability/status concept. It tells the user
+whether parking capacity is available at a location.
+
+"Slot Allocation" is a system action. SmartPark determines and assigns a
+compatible available slot as part of the booking process.
+
+The user-facing experience should therefore NOT contain a mandatory
+"Slot Allocated", "Choose Slot", or "Slot Allocation" step.
+
+After allocation, the allocated slot can be displayed to the user in:
+
+-   Booking confirmation
+-   Booking Success
+-   My Bookings
+-   Booking Details
+-   Access information where appropriate
+
+If existing code, routes, functions, templates, diagrams, or documentation
+use `select_slot` or similar terminology, future agents MUST review it
+against this decision before implementing or extending it. The intended
+behavior is slot allocation, not manual slot selection.
 
 # 21. BOOKING
 
@@ -1775,15 +1825,17 @@ Process 3 can be decomposed as:
       ↓
     3.5 Check Slot Availability
       ↓
-    3.6 Calculate Fee
+    3.6 Allocate Suitable Slot
       ↓
-    3.7 Create Booking
+    3.7 Calculate Fee
       ↓
-    3.8 Reserve Slot
+    3.8 Create Booking
       ↓
-    3.9 Send to Payment
+    3.9 Reserve Allocated Slot
       ↓
-    3.10 Confirm Booking
+    3.10 Send to Payment
+      ↓
+    3.11 Confirm Booking
       ↓
     QR + OTP
       ↓
@@ -1864,9 +1916,9 @@ Process 3 can be decomposed as:
           ↓
     Enter Vehicle Details
           ↓
-    Find Compatible Slots
+    Find Compatible Slot
           ↓
-    Select Slot
+    Slot Allocated
           ↓
     Review Booking
           ↓
@@ -1910,7 +1962,7 @@ Process 3 can be decomposed as:
         ↓
     Availability Check
         ↓
-    Slot Selection
+    Slot Allocation
         ↓
     Fee Calculation
         ↓
@@ -1984,13 +2036,13 @@ Process 3 can be decomposed as:
           ↓
     Check booking conflicts
           ↓
-    Display suitable slots
-          ↓
-    User selects slot
+    Allocate suitable slot
           ↓
     Final availability check
           ↓
-    Reserve
+    Reserve allocated slot
+          ↓
+    Show allocated slot in Booking Details
 
 ------------------------------------------------------------------------
 
@@ -2153,7 +2205,7 @@ practical.
 -   View availability
 -   View predictions
 -   Enter vehicle details
--   Select slot
+-   Receive allocated slot
 -   Book parking
 -   Make demo payment
 -   View booking success
@@ -2378,7 +2430,7 @@ Use cases:
 -   View Availability
 -   View Prediction
 -   Enter Vehicle Details
--   Select Slot
+-   Slot Allocation
 -   Book Parking
 -   Make Payment
 -   View Booking
@@ -3546,7 +3598,7 @@ Flow:
 
           ↓
 
-    Slot Selection
+    Slot Allocation
 
           ↓
 

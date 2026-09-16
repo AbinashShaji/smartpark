@@ -1,1 +1,85 @@
-<!-- payment.html -->
+{% extends 'base_dashboard.html' %}
+{% set active_page = 'find_parking' %}
+
+{% block title %}Booking Summary & Payment | SmartPark{% endblock %}
+{% block header_title %}Booking Summary{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <div class="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
+        
+        <div class="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center">
+                <i data-lucide="check" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Slot Allocated!</h2>
+                <p class="text-gray-500">Review your reservation details and complete payment.</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Left Col: Details -->
+            <div class="space-y-6">
+                <div>
+                    <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Parking Location</p>
+                    <p class="text-lg font-bold text-gray-900">{{ booking.parking_name }}</p>
+                    <p class="text-gray-500 text-sm">{{ booking.parking_address }}</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Date</p>
+                        <p class="font-medium text-gray-900">{{ booking.booking_date }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Time</p>
+                        <p class="font-medium text-gray-900">{{ booking.start_time[:5] }} - {{ booking.end_time[:5] }}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Vehicle</p>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="car" class="w-4 h-4 text-gray-500"></i>
+                        <span class="font-medium text-gray-900 uppercase">{{ booking.vehicle_number }}</span>
+                        <span class="text-gray-400 mx-1">•</span>
+                        <span class="text-gray-600 text-sm">{{ booking.vehicle_type }} ({{ booking.vehicle_category }})</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Col: Allocation & Fee -->
+            <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-lucide="lock" class="w-4 h-4 text-green-600"></i>
+                        <p class="text-xs font-bold tracking-widest text-green-600 uppercase">Allocated Slot</p>
+                    </div>
+                    <p class="text-5xl font-black tracking-tighter text-gray-900 mb-6">{{ booking.slot_number }}</p>
+                </div>
+
+                <div class="pt-6 border-t border-gray-200">
+                    <div class="flex justify-between items-end mb-2">
+                        <p class="text-gray-500 font-medium">Total Fee</p>
+                        <p class="text-3xl font-bold text-gray-900">₹{{ "%.2f"|format(fee) }}</p>
+                    </div>
+                    <p class="text-xs text-gray-400 text-right">Demo Payment Mode</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-100 pt-8 flex flex-col sm:flex-row justify-end items-center gap-4">
+            <a href="/parking/" class="text-sm font-medium text-gray-500 hover:text-black transition-colors order-2 sm:order-1">Cancel Booking</a>
+            <form method="POST" action="{{ url_for('payment.process', booking_id=booking.id) }}" class="w-full sm:w-auto order-1 sm:order-2">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <button type="submit" class="w-full sm:w-auto bg-black text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    Pay & Confirm Booking
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

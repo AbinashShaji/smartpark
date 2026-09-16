@@ -22,6 +22,11 @@ class User:
         return db.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
 
     @staticmethod
+    def get_by_id(user_id):
+        db = get_db()
+        return db.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+
+    @staticmethod
     def authenticate(email, password):
         user = User.get_by_email(email)
         if user and verify_password(user['password_hash'], password):
