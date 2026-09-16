@@ -1,6 +1,9 @@
 import os
 from flask import Flask, render_template
 from config import Config
+from flask_wtf.csrf import CSRFProtect
+
+csrf = CSRFProtect()
 
 def create_app(config_class=Config):
     # Configure template and static folders
@@ -9,6 +12,9 @@ def create_app(config_class=Config):
                 static_folder='static')
     
     app.config.from_object(config_class)
+
+    # Initialize CSRF protection
+    csrf.init_app(app)
 
     # Initialize database connection context
     from utils import database

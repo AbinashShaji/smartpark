@@ -1,5 +1,10 @@
 import sqlite3
 from flask import g, current_app
+from datetime import datetime
+
+# Fix Python 3.12+ DeprecationWarning by manually registering datetime adapters
+sqlite3.register_adapter(datetime, lambda val: val.isoformat(" "))
+sqlite3.register_converter("TIMESTAMP", lambda val: datetime.fromisoformat(val.decode()))
 
 def get_db():
     if 'db' not in g:
